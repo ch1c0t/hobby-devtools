@@ -13,7 +13,7 @@ module Hobby
             before :each do |example|
               test, app = described_class
 
-              socket = "app.for.#{example}.socket"
+              socket = "app.for.#{test}.socket"
               @pid = fork do
                 server = Puma::Server.new app.call
                 server.add_unix_listener socket
