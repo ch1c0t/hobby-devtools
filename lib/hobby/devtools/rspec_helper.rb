@@ -8,9 +8,11 @@ require 'hobby/devtools/rspec'
 RSpec.configure do |config|
   config.expect_with :rspec, :minitest
 
-  require 'timeout'
-  config.around :each do |example|
-    Timeout.timeout 3, &example
+  unless ENV['PRY']
+    require 'timeout'
+    config.around :each do |example|
+      Timeout.timeout 3, &example
+    end
   end
 
   config.after :suite do
