@@ -8,7 +8,7 @@ module Hobby
       def initialize &block
         instance_exec &block
         @specs.each do |file|
-          test = Hobby::Test.new file
+          test = Hobby::Test.from_file file
           ::RSpec.describe [test, @app] do
             before :each do |example|
               test, app = described_class

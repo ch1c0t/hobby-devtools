@@ -6,7 +6,7 @@ Gem::Specification.new do |g|
   g.authors = ['Anatoly Chernow']
 
   g.add_dependency 'hobby'
-  g.add_dependency 'hobby-test'
+  g.add_dependency 'hobby-test', '>=0.0.3'
   g.add_dependency 'mutant'
   g.add_dependency 'mutant-rspec'
   g.add_dependency 'rspec'
