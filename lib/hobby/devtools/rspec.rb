@@ -39,8 +39,8 @@ module Hobby
         @app = block
       end
 
-      def path string
-        @specs = Dir[string]
+      def path string = 'spec/http'
+        @specs = Dir["#{string}/**/*.yml"]
       end
     end
   end
