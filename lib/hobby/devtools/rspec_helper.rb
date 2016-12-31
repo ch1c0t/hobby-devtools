@@ -11,7 +11,7 @@ RSpec.configure do |config|
   unless ENV['PRY']
     require 'timeout'
     config.around :each do |example|
-      Timeout.timeout 1, &example
+      Timeout.timeout 2, &example
     end
   end
 
