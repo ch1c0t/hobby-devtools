@@ -1,7 +1,7 @@
 Gem::Specification.new do |g|
   g.name    = 'hobby-devtools'
   g.files   = `git ls-files`.split($/)
-  g.version = '0.0.6'
+  g.version = '0.0.7'
   g.summary = 'My setup for development of Hobby-related projects.'
   g.authors = ['Anatoly Chernow']
 

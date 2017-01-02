@@ -6,10 +6,11 @@ module Hobby
       end
 
       def initialize &block
+        @path = 'spec/http'
         instance_exec &block
 
-        Dir["#{path}/**/*.yml"].each do |file|
-          test = Hobby::Test.from_file file
+        Dir["#{@path}/**/*.yml"].each do |file|
+          test = Hobby::Test.from_file file, format: @format
           ::RSpec.describe [test, @app] do
             before :each do |example|
               test, app = described_class
@@ -40,9 +41,12 @@ module Hobby
         @app = block
       end
 
-      attr_reader :path
-      def path string = 'spec/http'
-        @path = string
+      def path path
+        @path = path
+      end
+
+      def format format
+        @format = format
       end
     end
   end
