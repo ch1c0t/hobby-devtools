@@ -1,7 +1,7 @@
 Gem::Specification.new do |g|
   g.name    = 'hobby-devtools'
   g.files   = `git ls-files`.split($/)
-  g.version = '0.0.7'
+  g.version = '0.0.8'
   g.summary = 'My setup for development of Hobby-related projects.'
   g.authors = ['Anatoly Chernow']
 
@@ -15,4 +15,5 @@ Gem::Specification.new do |g|
   g.add_dependency 'pry'
   g.add_dependency 'awesome_print'
   g.add_dependency 'puma'
+  g.add_dependency 'bgem'
 end
