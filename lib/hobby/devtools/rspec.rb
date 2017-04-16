@@ -1,5 +1,25 @@
 module Hobby
   module Devtools
+    ::RSpec::Matchers.define :be_ok do
+      match &:ok?
+      failure_message do |report|
+        report.map.with_index do |exchange_report, index|
+          <<~S
+            Index: #{index}
+            Status: #{exchange_report.ok? ? "passed" : "failed"}
+            Request:
+              #{exchange_report.request.template}
+              #{exchange_report.request}
+            Expected response:
+              #{exchange_report.expected_response.template}
+              #{exchange_report.expected_response}
+            Actual response:
+              #{exchange_report.actual_response}
+          S
+        end.join '-----------------------------'
+      end
+    end
+
     class RSpec
       def self.describe &block
         new &block
@@ -31,7 +51,7 @@ module Hobby
             after(:each) { `kill -9 #{@pid}` }
 
             it 'works' do
-              assert { @report.ok? }
+              expect(@report).to be_ok
             end
           end
         end
