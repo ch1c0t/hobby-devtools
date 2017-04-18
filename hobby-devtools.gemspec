@@ -16,4 +16,6 @@ Gem::Specification.new do |g|
   g.add_dependency 'awesome_print'
   g.add_dependency 'puma'
   g.add_dependency 'bgem'
+  g.add_dependency 'terminal-table'
+  g.add_dependency 'rainbow'
 end
