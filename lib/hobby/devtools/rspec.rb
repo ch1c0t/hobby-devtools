@@ -5,22 +5,7 @@ module Hobby
   module Devtools
     ::RSpec::Matchers.define :be_ok do
       match &:ok?
-      failure_message do |report|
-        report.map.with_index do |exchange_report, index|
-          Terminal::Table.new do |t|
-            t.add_row ['Index', index]
-
-            status = exchange_report.ok? ? Rainbow('passed').green : Rainbow('failed').red
-            t.add_row ['Status', status]
-
-            t.add_row ['Request', exchange_report.request.to_yaml]
-            t.add_row ['Expected response', exchange_report.expected_response.to_yaml]
-            t.add_row ['Actual response', exchange_report.actual_response.to_yaml]
-
-            t.style = { all_separators: true }
-          end.to_s
-        end.join "\n\n"
-      end
+      failure_message &:to_s
     end
 
     class RSpec
