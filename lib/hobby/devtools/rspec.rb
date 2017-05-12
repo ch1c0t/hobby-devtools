@@ -19,10 +19,8 @@ module Hobby
 
         Dir["#{@path}/**/*.yml"].each do |file|
           test = Hobby::Test.from_file file, format: @format
-          ::RSpec.describe [test, @app] do
+          ::RSpec.describe(file).instance_exec test, @app do |test, app|
             before :each do |example|
-              test, app = described_class
-
               socket = "app.for.#{test}.socket"
               @pid = fork do
                 server = Puma::Server.new app.call
