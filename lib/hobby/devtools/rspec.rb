@@ -1,3 +1,4 @@
+require 'securerandom'
 require 'terminal-table'
 require 'rainbow'
 
@@ -21,7 +22,7 @@ module Hobby
           test = Hobby::Test.from_file file, format: @format
           ::RSpec.describe(file).instance_exec test, @app do |test, app|
             before :each do |example|
-              socket = "app.for.#{test}.socket"
+              socket = "app.for.#{SecureRandom.uuid}.socket"
               @pid = fork do
                 server = Puma::Server.new app.call
                 server.add_unix_listener socket
