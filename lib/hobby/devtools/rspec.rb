@@ -1,6 +1,4 @@
 require 'securerandom'
-require 'terminal-table'
-require 'rainbow'
 
 module Hobby
   module Devtools
