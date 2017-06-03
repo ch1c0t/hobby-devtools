@@ -1,13 +1,14 @@
 require 'hobby/test'
 require 'puma'
 
-require 'hobby/devtools/power_assert'
+require 'rspec/power_assert'
+RSpec::PowerAssert.example_assertion_alias :assert
+RSpec::PowerAssert.example_group_assertion_alias :assert
+
 require 'hobby/devtools/mutant'
 require 'hobby/devtools/rspec'
 
 RSpec.configure do |config|
-  config.expect_with :rspec, :minitest
-
   unless ENV['PRY']
     require 'timeout'
     config.around :each do |example|
