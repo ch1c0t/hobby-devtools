@@ -15,8 +15,4 @@ RSpec.configure do |config|
       Timeout.timeout 2, &example
     end
   end
-
-  config.after :suite do
-    `rm *.socket` unless Dir['*.socket'].empty?
-  end
 end

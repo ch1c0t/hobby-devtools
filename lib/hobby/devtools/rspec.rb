@@ -30,10 +30,14 @@ module Hobby
 
               sleep 0.01 until File.exist? socket
 
+              @socket = socket
               @report = test[socket]
             end
 
-            after(:each) { `kill -9 #{@pid}` }
+            after(:each) {
+              `kill -9 #{@pid}`
+              `rm #{@socket}`
+            }
 
             it 'works' do
               expect(@report).to be_ok
